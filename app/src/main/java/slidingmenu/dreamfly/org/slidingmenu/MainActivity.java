@@ -17,6 +17,7 @@ import android.widget.Toast;
 import slidingmenu.dreamfly.org.slidingmenu.custom.PicGarellyActivity;
 import slidingmenu.dreamfly.org.slidingmenu.custom.SlidingMenu;
 import slidingmenu.dreamfly.org.slidingmenu.custom.app.DetailActivity;
+import slidingmenu.dreamfly.org.slidingmenu.custom.app.DetailsActivity;
 import slidingmenu.dreamfly.org.slidingmenu.custom.app.SlidingActivity;
 
 
@@ -71,7 +72,7 @@ public class MainActivity extends Activity {
         this.btnMenuLeftPicGralley.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this, DetailActivity.class);
+                Intent intent=new Intent(MainActivity.this, DetailsActivity.class);
                 startActivity(intent);
             }
         });

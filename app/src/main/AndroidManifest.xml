@@ -20,6 +20,8 @@
         </activity>
         <activity android:name=".custom.app.DetailActivity">
         </activity>
+        <activity android:name=".custom.app.DetailsActivity">
+        </activity>
     </application>
 
 </manifest>
