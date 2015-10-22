@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+      <Button
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/test_scroll_by"
+          android:text="testScrollBy"/>
+
+      <Button
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/test_scroll_to"
+          android:text="testScrollTo"/>
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/textview_testScroll_scroll"
+          android:text="scroll"/>
+      <slidingmenu.dreamfly.org.slidingmenu.custom.app.MyDedefineTextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="test scrolling"
+          android:id="@+id/definetextview_testScroll_scroll2"/>
+
+
+</LinearLayout>

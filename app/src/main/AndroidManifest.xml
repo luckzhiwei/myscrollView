@@ -22,6 +22,8 @@
         </activity>
         <activity android:name=".custom.app.DetailsActivity">
         </activity>
+        <activity android:name=".custom.app.TestScrollActivity">
+        </activity>
     </application>
 
 </manifest>
