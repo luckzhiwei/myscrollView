@@ -61,8 +61,6 @@ public class MyDedefineTextView extends Button {
            if(this.mScroller.computeScrollOffset()){
                  setX(mScroller.getCurrX());
                  setY(mScroller.getCurrY());
-                 Log.i("lzw","curX"+mScroller.getCurrX());
-                 Log.i("lzw","curY"+mScroller.getCurrY());
                  invalidate();
 
            }

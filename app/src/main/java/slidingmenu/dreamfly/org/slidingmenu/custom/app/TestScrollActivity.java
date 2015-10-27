@@ -2,6 +2,7 @@ package slidingmenu.dreamfly.org.slidingmenu.custom.app;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -18,7 +19,7 @@ public class TestScrollActivity extends Activity {
     private Button btnTestScrollTo;
     private TextView textViewTestScrollTest;
     private MyDedefineTextView defineTextViewTestScrollScroll2;
-
+    private DetailRootLayout  mydefineLayout;
 
 
     protected void onCreate(Bundle savedInstanceState){
@@ -28,17 +29,20 @@ public class TestScrollActivity extends Activity {
          this.btnTestScrollTo=(Button)this.findViewById(R.id.test_scroll_to);
          this.textViewTestScrollTest=(TextView)this.findViewById(R.id.textview_testScroll_scroll);
          this.defineTextViewTestScrollScroll2=(MyDedefineTextView)this.findViewById(R.id.definetextview_testScroll_scroll2);
-         this.btnTestScrollTest.setOnClickListener(new View.OnClickListener() {
+         this.mydefineLayout=(DetailRootLayout)this.findViewById(R.id.mydefine_layout);
+
+        this.btnTestScrollTest.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View view) {
                     textViewTestScrollTest.scrollBy(-30,0);
              }
          });
 
+
         this.btnTestScrollTo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                 textViewTestScrollTest.scrollTo(30,0);
+                 textViewTestScrollTest.scrollTo(30,30);
             }
          });
 
