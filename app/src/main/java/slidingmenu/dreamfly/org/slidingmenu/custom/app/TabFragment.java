@@ -22,7 +22,6 @@ public class TabFragment extends Fragment {
     public static final String  TITLE="title";
     public static final String  BACKGROUAND="BACKGROUND";
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -35,23 +34,9 @@ public class TabFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
-           View mFramgmentView=inflater.inflate(R.layout.tabfragment_layout,container,false);
-           this.textviewFragmentTitle=(TextView)mFramgmentView.findViewById(R.id.textview_tabfag_title);
-           this.linearFragementRootLayout=(LinearLayout)mFramgmentView.findViewById(R.id.linearlayout_tabfragment_rootlayout);
-           this.textviewFragmentTitle.setText(mTitle);
-           switch (this.backgroundIndex){
-               case 1:
-                     this.linearFragementRootLayout.setBackgroundResource(R.drawable.pic_one);
-                      break;
-               case 2:
-                     this.linearFragementRootLayout.setBackgroundResource(R.drawable.pic_two);
-                     break;
-               case 3:
-                     this.linearFragementRootLayout.setBackgroundResource(R.drawable.pic_three);
-                     break;
-               default:
-                     break;
-           }
+           View mFramgmentView=inflater.inflate(R.layout.fragment_tab,container,false);
+           this.textviewFragmentTitle=(TextView)mFramgmentView.findViewById(R.id.id_info);
+           this.textviewFragmentTitle.setText(this.mTitle);
            return(mFramgmentView);
     }
 

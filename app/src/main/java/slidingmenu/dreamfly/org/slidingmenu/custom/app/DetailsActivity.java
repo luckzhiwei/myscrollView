@@ -17,6 +17,8 @@ public class DetailsActivity extends FragmentActivity {
     private ViewPager mViewPager;
     private FragmentPagerAdapter mFragmentPagerAdapter;
     private TabFragment[] mTabFragment;
+    private SimpleViewPagerIndicator mSimpleViewPagerIndicator;
+
 
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -28,15 +30,37 @@ public class DetailsActivity extends FragmentActivity {
     private void init(){
          this.initViews();
          this.initDatas();
+
     }
 
 
     private void initViews(){
+        this.mSimpleViewPagerIndicator=(SimpleViewPagerIndicator)this.findViewById(R.id.mydefindicator_detailactivity_viewpagerindicator);
         this.mViewPager=(ViewPager)this.findViewById(R.id.viewpager_detail2_viewdetials);
     }
 
+    private void initEvent(){
+        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                mSimpleViewPagerIndicator.scroll(position, positionOffset);
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+    }
+
     private void initDatas(){
-         this.DetailTitle=new String[]{"简介","评价","相关"};
+        this.DetailTitle=new String[]{"简介","评价","相关"};
+        this.mSimpleViewPagerIndicator.setTitles(this.DetailTitle);
          this.mTabFragment=new TabFragment[3];
          for(int index=0;index<3;index++){
                this.mTabFragment[index]=TabFragment.newInstatence(this.DetailTitle[index],index+1);

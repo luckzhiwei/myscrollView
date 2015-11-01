@@ -30,6 +30,7 @@ import slidingmenu.dreamfly.org.slidingmenu.R;
 public class DetailRootLayout  extends LinearLayout {
 
     private View mTop;
+    private View mSimpleIncator;
     private ViewPager mViewPager;
 
     private int mTopViewHeight;
@@ -60,7 +61,7 @@ public class DetailRootLayout  extends LinearLayout {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
           super.onMeasure(widthMeasureSpec,heightMeasureSpec);
           ViewGroup.LayoutParams mLayoutParams=this.mViewPager.getLayoutParams();
-          mLayoutParams.height=getMeasuredHeight()-this.mTop.getMeasuredHeight();
+          mLayoutParams.height=getMeasuredHeight()-this.mSimpleIncator.getMeasuredHeight();
     }
 
     @Override
@@ -74,6 +75,7 @@ public class DetailRootLayout  extends LinearLayout {
         super.onFinishInflate();
         this.mViewPager=(ViewPager)this.findViewById(R.id.viewpager_detail2_viewdetials);
         this.mTop=this.findViewById(R.id.relayout_detail2_showdetail);
+        this.mSimpleIncator=this.findViewById(R.id.mydefindicator_detailactivity_viewpagerindicator);
     }
     @Override
     public boolean onTouchEvent(MotionEvent event){
@@ -145,13 +147,12 @@ public class DetailRootLayout  extends LinearLayout {
                   //拦截事件
                   if(Math.abs(disY)>this.mTouchSlop){
                         this.isDragging=true;
-                        if(this.isTopHidden){
+                        if(!this.isTopHidden){
                               this.mLastY=event.getY();
                               this.mVelocityTracker.addMovement(event);
                               return(true);
                         }
                   }
-
                  break;
             case MotionEvent.ACTION_UP:
                  this.isDragging=false;
@@ -159,8 +160,6 @@ public class DetailRootLayout  extends LinearLayout {
         }
         return(super.onInterceptTouchEvent(event));
     }
-
-
 
 
 

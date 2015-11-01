@@ -19,6 +19,13 @@
                  android:text="软件介绍"
                  />
        </RelativeLayout>
+       <slidingmenu.dreamfly.org.slidingmenu.custom.app.SimpleViewPagerIndicator
+           android:layout_width="match_parent"
+           android:layout_height="50dp"
+           android:background="#ffffffff"
+           android:id="@+id/mydefindicator_detailactivity_viewpagerindicator"
+           >
+       </slidingmenu.dreamfly.org.slidingmenu.custom.app.SimpleViewPagerIndicator>
        <android.support.v4.view.ViewPager
         android:layout_width="match_parent"
         android:background="#44ff0000"
