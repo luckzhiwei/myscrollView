@@ -35,7 +35,7 @@ public class TabFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
-           View mFramgmentView=inflater.inflate(R.layout.tabfragment_layout,null);
+           View mFramgmentView=inflater.inflate(R.layout.tabfragment_layout,container,false);
            this.textviewFragmentTitle=(TextView)mFramgmentView.findViewById(R.id.textview_tabfag_title);
            this.linearFragementRootLayout=(LinearLayout)mFramgmentView.findViewById(R.id.linearlayout_tabfragment_rootlayout);
            this.textviewFragmentTitle.setText(mTitle);

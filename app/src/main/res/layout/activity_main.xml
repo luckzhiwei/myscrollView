@@ -3,12 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-          <slidingmenu.dreamfly.org.slidingmenu.custom.SlidingMenu
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="#ffffffff"
-              android:id="@+id/slidingmenulayout"
-              >
-          </slidingmenu.dreamfly.org.slidingmenu.custom.SlidingMenu>
-
+          <Button
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="测试scroll 滑动"
+              android:layout_centerInParent="true"
+              android:id="@+id/btn_mainactivity_testscroll"/>
+         <Button
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="自定义scrollView"
+             android:layout_below="@id/btn_mainactivity_testscroll"
+             android:id="@+id/btn_mainactivity_defscrollview"
+             />
 </RelativeLayout>
