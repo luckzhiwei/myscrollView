@@ -45,6 +45,9 @@ public class DetailRootLayout  extends LinearLayout {
     private float mLastY;
     private boolean isDragging;
 
+    private float minitialY;
+
+
     public DetailRootLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
         setOrientation(LinearLayout.VERTICAL);
@@ -57,11 +60,17 @@ public class DetailRootLayout  extends LinearLayout {
         this.mMinimumVelocity=ViewConfiguration.get(context).getScaledMinimumFlingVelocity();
     }
 
+    /**
+     * 在这里要设置viewpageer本身的高度，这里一定要设置的尽量大
+     * 或者就是全屏都可以,这样才会让整个定义的Layout超出屏幕的范围
+     * @param widthMeasureSpec
+     * @param heightMeasureSpec
+     */
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
           super.onMeasure(widthMeasureSpec,heightMeasureSpec);
           ViewGroup.LayoutParams mLayoutParams=this.mViewPager.getLayoutParams();
-          mLayoutParams.height=getMeasuredHeight()-this.mSimpleIncator.getMeasuredHeight();
+          mLayoutParams.height=this.getMeasuredHeight()-this.mSimpleIncator.getMeasuredHeight();
     }
 
     @Override
@@ -83,6 +92,7 @@ public class DetailRootLayout  extends LinearLayout {
          switch (event.getAction()) {
              case MotionEvent.ACTION_DOWN:
                  this.mLastY = event.getY();
+                 this.minitialY=event.getY();
                  if (this.mScroller.isFinished()) {
                      this.mScroller.abortAnimation();
                  }
@@ -96,43 +106,64 @@ public class DetailRootLayout  extends LinearLayout {
                      this.scrollBy(0, -(int) disY);
                      this.mLastY=event.getY();
                  }
+                ;
                  break;
              case MotionEvent.ACTION_UP:
                  this.isDragging = false;
                  this.mVelocityTracker.computeCurrentVelocity(1000,this.mMaximumVelocity);
                  float velocityY=this.mVelocityTracker.getYVelocity();
-                 if(Math.abs(velocityY)>this.mMaximumVelocity){
-                      this.fling((int)velocityY);
+                 //向下滑动，速率的计算值肯定是负数
+                 if(Math.abs(velocityY)>this.mMinimumVelocity){
+                      this.fling(-(int)velocityY);
                  }
+//                 float disTmp=event.getY()-this.minitialY;
+//                 this.mScroller.startScroll(this.mScroller.getFinalX(),
+//                                 this.getScrollY(),0,(int)disTmp);
+//                 this.invalidate();
                  break;
          }
          return(true);
     }
 
 
-
+    /**
+     * fling mScroller fling 这个函数是干什么用的?
+     * @param velocity
+     */
     private void fling(int velocity){
-         this.mScroller.fling(0,0,0,velocity,0,0,0,0,0,this.mTopViewHeight);
+         this.mScroller.fling(0,this.getScrollY(),0,velocity,0,0,0,this.mTopViewHeight);
          this.invalidate();
     }
+
+
+
 
 
     @Override
     public void computeScroll() {
         if(this.mScroller.computeScrollOffset()){
               this.scrollTo(0,this.mScroller.getCurrY());
+              invalidate();
         }
     }
 
     @Override
     public void scrollTo(int x,int y){
-            if(y<0){
-                 y=0;
-            }else if(y>this.mTopViewHeight){
-                  y=mTopViewHeight;
-            }else if(y!=this.getScrollY()){
-                  super.scrollTo(0,y);
+            if(y<0) {
+                y = 0;
             }
+//            }else if(y>this.mTopViewHeight){
+//                  y=mTopViewHeight;
+//            }else if(y!=this.getScrollY()){
+//                  super.scrollTo(0,y);
+//            }
+            if(y>this.mTopViewHeight){
+               y=mTopViewHeight;
+            }
+            if(y!=this.getScrollY()){
+                  super.scrollTo(x,y);
+            }
+
            this.isTopHidden=(getScrollY()==mTopViewHeight);
     }
 
@@ -160,8 +191,6 @@ public class DetailRootLayout  extends LinearLayout {
         }
         return(super.onInterceptTouchEvent(event));
     }
-
-
 
 
 }
