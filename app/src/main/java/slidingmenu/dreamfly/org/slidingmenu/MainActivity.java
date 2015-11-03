@@ -25,19 +25,19 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         this.btnMainActivityTestScroll=(Button)this.findViewById(R.id.btn_mainactivity_testscroll);
         this.btnMainactivityDefScrollView=(Button)this.findViewById(R.id.btn_mainactivity_defscrollview);
-        this.btnMainActivityTestScroll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                  Intent i=new Intent();
-                  i.setClass(getApplication(), TestScrollActivity.class);
-                  startActivity(i);
-            }
-        });
         this.btnMainactivityDefScrollView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                  Intent i=new Intent();
                  i.setClass(getApplicationContext(),DetailsActivity.class);
+                 startActivity(i);
+            }
+        });
+        this.btnMainActivityTestScroll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                 Intent i=new Intent();
+                 i.setClass(getApplicationContext(),TestScrollActivity.class);
                  startActivity(i);
             }
         });

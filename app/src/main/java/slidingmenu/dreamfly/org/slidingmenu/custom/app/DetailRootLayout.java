@@ -32,6 +32,7 @@ public class DetailRootLayout  extends LinearLayout {
     private View mTop;
     private View mSimpleIncator;
     private ViewPager mViewPager;
+    private View mFragmentInnerView;
 
     private int mTopViewHeight;
     private ViewGroup mInnerScrollView;
@@ -44,9 +45,6 @@ public class DetailRootLayout  extends LinearLayout {
 
     private float mLastY;
     private boolean isDragging;
-
-    private float minitialY;
-
 
     public DetailRootLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -77,6 +75,7 @@ public class DetailRootLayout  extends LinearLayout {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
           super.onSizeChanged(w,h,oldw,oldh);
           this.mTopViewHeight=this.mTop.getMeasuredHeight();
+          Log.i("lzw","topHeight"+this.mTopViewHeight);
     }
 
     @Override
@@ -86,13 +85,18 @@ public class DetailRootLayout  extends LinearLayout {
         this.mTop=this.findViewById(R.id.relayout_detail2_showdetail);
         this.mSimpleIncator=this.findViewById(R.id.mydefindicator_detailactivity_viewpagerindicator);
     }
+
+    /**
+     * startScroll(滑动的起点的X,滑动的起点的Y,滑动的最终距离X，滑动的最终距离Y)
+     * @param event
+     * @return
+     */
     @Override
     public boolean onTouchEvent(MotionEvent event){
          this.mVelocityTracker.addMovement(event);
          switch (event.getAction()) {
              case MotionEvent.ACTION_DOWN:
                  this.mLastY = event.getY();
-                 this.minitialY=event.getY();
                  if (this.mScroller.isFinished()) {
                      this.mScroller.abortAnimation();
                  }
@@ -106,20 +110,19 @@ public class DetailRootLayout  extends LinearLayout {
                      this.scrollBy(0, -(int) disY);
                      this.mLastY=event.getY();
                  }
-                ;
                  break;
              case MotionEvent.ACTION_UP:
                  this.isDragging = false;
-                 this.mVelocityTracker.computeCurrentVelocity(1000,this.mMaximumVelocity);
-                 float velocityY=this.mVelocityTracker.getYVelocity();
-                 //向下滑动，速率的计算值肯定是负数
-                 if(Math.abs(velocityY)>this.mMinimumVelocity){
-                      this.fling(-(int)velocityY);
-                 }
-//                 float disTmp=event.getY()-this.minitialY;
-//                 this.mScroller.startScroll(this.mScroller.getFinalX(),
-//                                 this.getScrollY(),0,(int)disTmp);
-//                 this.invalidate();
+//                 this.mVelocityTracker.computeCurrentVelocity(1000,this.mMaximumVelocity);
+//                 float velocityY=this.mVelocityTracker.getYVelocity();
+//                 //向下滑动，速率的计算值肯定是负数
+//                 if(Math.abs(velocityY)>this.mMinimumVelocity){
+//                      this.fling(-(int)velocityY);
+//                 }
+                 float disTmp=event.getY()-this.mLastY;
+                 this.mScroller.startScroll(this.mScroller.getFinalX(),
+                                 this.getScrollY(),0,-(int)disTmp);
+
                  break;
          }
          return(true);
@@ -127,7 +130,15 @@ public class DetailRootLayout  extends LinearLayout {
 
 
     /**
-     * fling mScroller fling 这个函数是干什么用的?
+     * fling函数
+     * startX:开始滑动的X起点
+     * startY:开始滚动的Y起点
+     * velocityX:滑动的速度X
+     * velocityY:滑动的速度Y
+     * minx:X方向的最小值
+     * maxX:X方向的最大值
+     * minY:Y方向的最小值
+     * maxY:Y方向的最大值
      * @param velocity
      */
     private void fling(int velocity){
@@ -136,9 +147,10 @@ public class DetailRootLayout  extends LinearLayout {
     }
 
 
-
-
-
+    /**
+     * 在fling或者startScroll方法后，调用invalidate方法后执行的函数
+     * scroller.getCurY() 返回当前Y方向的偏移
+     */
     @Override
     public void computeScroll() {
         if(this.mScroller.computeScrollOffset()){
@@ -147,23 +159,23 @@ public class DetailRootLayout  extends LinearLayout {
         }
     }
 
+    /**
+     *
+     * @param x
+     * @param y
+     */
     @Override
     public void scrollTo(int x,int y){
             if(y<0) {
                 y = 0;
             }
-//            }else if(y>this.mTopViewHeight){
-//                  y=mTopViewHeight;
-//            }else if(y!=this.getScrollY()){
-//                  super.scrollTo(0,y);
-//            }
+            //指定一个滑动的上限
             if(y>this.mTopViewHeight){
                y=mTopViewHeight;
             }
             if(y!=this.getScrollY()){
                   super.scrollTo(x,y);
             }
-
            this.isTopHidden=(getScrollY()==mTopViewHeight);
     }
 
@@ -175,21 +187,42 @@ public class DetailRootLayout  extends LinearLayout {
                  break;
             case MotionEvent.ACTION_MOVE:
                  float disY=event.getY()-this.mLastY;
-                  //拦截事件
+                 this.getFramgmentInnerView();
+                /**
+                 *两种情况拦截事件:
+                 * 当顶部的TopView还没有完全被遮盖的时候，滑动事件不向下处理
+                 * 之后会将手势事件下放,
+                 * 当我们在顶部的列表view的Y=0且绑定手势是想要向上滑动的,则再次回收
+                 * 事件监测处理权
+                 */
                   if(Math.abs(disY)>this.mTouchSlop){
                         this.isDragging=true;
-                        if(!this.isTopHidden){
+                        if(!this.isTopHidden ||
+                                (this.isTopHidden &&
+                                  this.mFragmentInnerView.getScrollY()==0
+                                  && (disY)>0)){
                               this.mLastY=event.getY();
                               this.mVelocityTracker.addMovement(event);
                               return(true);
                         }
                   }
+                  Log.i("lzw","innerViewY"+this.mFragmentInnerView.getScrollY());
+
                  break;
             case MotionEvent.ACTION_UP:
                  this.isDragging=false;
                  break;
         }
         return(super.onInterceptTouchEvent(event));
+    }
+
+    private void getFramgmentInnerView(){
+          if(this.mFragmentInnerView==null){
+                 int itemCount=this.mViewPager.getCurrentItem();
+                 PagerAdapter pagerAdapter=this.mViewPager.getAdapter();
+                 Fragment item=(Fragment)pagerAdapter.instantiateItem(mViewPager,itemCount);
+                 mFragmentInnerView=item.getView().findViewById(R.id.scrollview_tabfra_rootview);
+           }
     }
 
 
