@@ -11,6 +11,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 
 import slidingmenu.dreamfly.org.slidingmenu.custom.app.DetailsActivity;
+import slidingmenu.dreamfly.org.slidingmenu.custom.app.HorizontalScrollActivity;
 import slidingmenu.dreamfly.org.slidingmenu.custom.app.TestScrollActivity;
 
 public class MainActivity extends Activity {
@@ -18,6 +19,7 @@ public class MainActivity extends Activity {
 
     private Button btnMainActivityTestScroll;
     private Button btnMainactivityDefScrollView;
+    private Button btnMainactivitiyHSlayout;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +27,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         this.btnMainActivityTestScroll=(Button)this.findViewById(R.id.btn_mainactivity_testscroll);
         this.btnMainactivityDefScrollView=(Button)this.findViewById(R.id.btn_mainactivity_defscrollview);
+        this.btnMainactivitiyHSlayout=(Button)this.findViewById(R.id.btn_mainactivity_testHSlayout);
         this.btnMainactivityDefScrollView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -39,6 +42,13 @@ public class MainActivity extends Activity {
                  Intent i=new Intent();
                  i.setClass(getApplicationContext(),TestScrollActivity.class);
                  startActivity(i);
+            }
+        });
+        this.btnMainactivitiyHSlayout.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view) {
+                  Intent i=new Intent();
+                  i.setClass(getApplicationContext(), HorizontalScrollActivity.class);
+                  startActivity(i);
             }
         });
 

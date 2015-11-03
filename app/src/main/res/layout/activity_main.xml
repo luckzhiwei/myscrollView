@@ -12,8 +12,15 @@
          <Button
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
+             android:layout_centerInParent="true"
              android:text="自定义scrollView"
              android:layout_below="@id/btn_mainactivity_testscroll"
              android:id="@+id/btn_mainactivity_defscrollview"
              />
+         <Button
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="模仿QQ的横向滑动对话框"
+             android:id="@+id/btn_mainactivity_testHSlayout"
+             android:layout_below="@id/btn_mainactivity_defscrollview"/>
 </RelativeLayout>

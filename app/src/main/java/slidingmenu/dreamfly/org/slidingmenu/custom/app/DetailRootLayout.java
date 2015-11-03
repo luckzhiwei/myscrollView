@@ -78,6 +78,9 @@ public class DetailRootLayout  extends LinearLayout {
           Log.i("lzw","topHeight"+this.mTopViewHeight);
     }
 
+    /**
+     * 在一个XML才可以findViewById,否则会报出空指针异常
+     */
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
