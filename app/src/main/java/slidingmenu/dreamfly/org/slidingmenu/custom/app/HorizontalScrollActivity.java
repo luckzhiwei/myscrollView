@@ -6,6 +6,7 @@ import android.view.MotionEvent;
 import slidingmenu.dreamfly.org.slidingmenu.R;
 
 /**
+ * 模仿QQ的自定义聊天记录栏目
  * Created by asus on 2015/11/3.
  */
 public class HorizontalScrollActivity extends Activity {

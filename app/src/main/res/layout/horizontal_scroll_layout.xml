@@ -24,9 +24,10 @@
                             android:gravity="center"
                             android:id="@+id/textview_hslayout_chating"/>
                         <TextView
-                            android:layout_width="50dp"
+                            android:layout_width="128dp"
                             android:background="#D80323"
                             android:text="删除"
+                            android:gravity="center"
                             android:textColor="#ffffff"
                             android:id="@+id/textview_hslayout_delete"
                             android:layout_height="match_parent" />
