@@ -54,10 +54,11 @@ public class MyDefineHorzontalView extends LinearLayout {
                 this.mScroller.startScroll(this.getScrollX(),
                          this.mScroller.getCurrY(),-(int)(disX),0);
                 this.invalidate();
-                this.mLastX=event.getX();
-//                this.mVeloctiyTracker.computeCurrentVelocity(1000,this.mMaxVelocity);
-//                float velocityY=mVeloctiyTracker.getXVelocity();
-//                this.fling(-(int)velocityY);
+//                this.mLastX=event.getX();
+////                this.mVeloctiyTracker.computeCurrentVelocity(1000,this.mMaxVelocity);
+////                float velocityY=mVeloctiyTracker.getXVelocity();
+////                Log.i("lzw","velocity"+velocityY);
+////                this.fling(-(int)velocityY);
                 break;
         }
         return(true);

@@ -216,7 +216,7 @@ public class DetailRootLayout  extends LinearLayout {
                  this.isDragging=false;
                  break;
         }
-        return(super.onInterceptTouchEvent(event));
+        return(super.onInterceptTouchEvent(event));//默认返回true
     }
 
     private void getFramgmentInnerView(){
