@@ -30,12 +30,11 @@ import slidingmenu.dreamfly.org.slidingmenu.R;
 public class DetailRootLayout  extends LinearLayout {
 
     private View mTop;
-    private View mSimpleIncator;
+
     private ViewPager mViewPager;
     private View mFragmentInnerView;
 
     private int mTopViewHeight;
-    private ViewGroup mInnerScrollView;
     private boolean isTopHidden;
 
     private OverScroller mScroller;
@@ -53,6 +52,7 @@ public class DetailRootLayout  extends LinearLayout {
         this.mScroller=new OverScroller(context);
         this.isDragging=false;
         this.isTopHidden=false;
+        this.setBackgroundResource(LinearLayout.VERTICAL);
         this.mTouchSlop=ViewConfiguration.get(context).getScaledTouchSlop();
         this.mMaximumVelocity=ViewConfiguration.get(context).getScaledMaximumFlingVelocity();
         this.mMinimumVelocity=ViewConfiguration.get(context).getScaledMinimumFlingVelocity();
@@ -68,14 +68,13 @@ public class DetailRootLayout  extends LinearLayout {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
           super.onMeasure(widthMeasureSpec,heightMeasureSpec);
           ViewGroup.LayoutParams mLayoutParams=this.mViewPager.getLayoutParams();
-          mLayoutParams.height=this.getMeasuredHeight()-this.mSimpleIncator.getMeasuredHeight();
+          mLayoutParams.height=this.getMeasuredHeight();
     }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
           super.onSizeChanged(w,h,oldw,oldh);
           this.mTopViewHeight=this.mTop.getMeasuredHeight();
-          Log.i("lzw","topHeight"+this.mTopViewHeight);
     }
 
     /**
@@ -84,9 +83,8 @@ public class DetailRootLayout  extends LinearLayout {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        this.mViewPager=(ViewPager)this.findViewById(R.id.viewpager_detail2_viewdetials);
-        this.mTop=this.findViewById(R.id.relayout_detail2_showdetail);
-        this.mSimpleIncator=this.findViewById(R.id.mydefindicator_detailactivity_viewpagerindicator);
+        this.mViewPager=(ViewPager)this.findViewById(R.id.viewpager_defscrollview);
+        this.mTop=this.findViewById(R.id.top_view_defscrollview);
     }
 
     /**
@@ -209,8 +207,7 @@ public class DetailRootLayout  extends LinearLayout {
                               return(true);
                         }
                   }
-                  Log.i("lzw","innerViewY"+this.mFragmentInnerView.getScrollY());
-
+              //   Log.i("lzw","innerViewY"+this.mFragmentInnerView.getScrollY());
                  break;
             case MotionEvent.ACTION_UP:
                  this.isDragging=false;
@@ -227,6 +224,8 @@ public class DetailRootLayout  extends LinearLayout {
                  mFragmentInnerView=item.getView().findViewById(R.id.scrollview_tabfra_rootview);
            }
     }
+
+
 
 
 }

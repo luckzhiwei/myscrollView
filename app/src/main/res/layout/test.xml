@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/relayout_health_card_rootlayout"
+        android:layout_width="match_parent"
+        android:layout_height="128dp"
+        android:background="@drawable/health_card_bg_unseleted"
+    >
+        <TextView
+            android:id="@+id/textview_health_card_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="王先生" />
+        <TextView
+            android:id="@+id/textview_health_card_tel_num"
+            style="@style/base_textview_middle"
+            android:layout_width="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toRightOf="@id/textview_health_card_username"
+            android:layout_height="wrap_content"
+            android:text="136****273798" />
+        <TextView
+            style="@style/base_textview_middle"
+            android:id="@+id/textview_health_card_cardnum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No:CD 201607016"
+            android:layout_below="@id/textview_health_card_username"
+            android:layout_alignLeft="@id/textview_health_card_username"
+            />
+    </RelativeLayout>
+</LinearLayout>

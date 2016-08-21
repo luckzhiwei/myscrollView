@@ -3,33 +3,31 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     >
-       <RelativeLayout
-           android:id="@+id/relayout_detail2_showdetail"
-           android:layout_width="match_parent"
-           android:background="#4400ff00"
-           android:layout_height="400dp">
-             <TextView
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_centerInParent="true"
-                 android:textSize="22sp"
-                 android:gravity="center"
-                 android:text="软件介绍"
-                 />
-       </RelativeLayout>
-       <slidingmenu.dreamfly.org.slidingmenu.custom.app.SimpleViewPagerIndicator
-           android:layout_width="match_parent"
-           android:layout_height="50dp"
-           android:background="#ffffffff"
-           android:id="@+id/mydefindicator_detailactivity_viewpagerindicator"
-           >
-       </slidingmenu.dreamfly.org.slidingmenu.custom.app.SimpleViewPagerIndicator>
-       <android.support.v4.view.ViewPager
+    <RelativeLayout
+        android:id="@id/top_view_defscrollview"
         android:layout_width="match_parent"
-        android:background="#44ff0000"
-        android:id="@+id/viewpager_detail2_viewdetials"
-        android:layout_height="match_parent">
-      </android.support.v4.view.ViewPager>
+        android:background="#4400ff00"
+        android:layout_height="400dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textSize="22sp"
+            android:gravity="center"
+            android:text="软件介绍"
+            />
+    </RelativeLayout>
+    <slidingmenu.dreamfly.org.slidingmenu.custom.app.SimpleViewPagerIndicator
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#ffffffff"
+        android:id="@+id/mydefindicator_detailactivity_viewpagerindicator"
+        >
+    </slidingmenu.dreamfly.org.slidingmenu.custom.app.SimpleViewPagerIndicator>
+    <android.support.v4.view.ViewPager
+    android:layout_width="match_parent"
+    android:id="@id/viewpager_defscrollview"
+    android:layout_height="match_parent">
+</android.support.v4.view.ViewPager>
 </slidingmenu.dreamfly.org.slidingmenu.custom.app.DetailRootLayout>

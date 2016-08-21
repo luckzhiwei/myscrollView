@@ -4,5 +4,8 @@
     <string name="app_name">SlidingMenu</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-
+    <string name="team">全科医护人员26名，始终把“以病人为中心”做为科室的服务理念，确保患者安全，降低医疗风险，持续改进医疗质量，努力为患者医治疾患，全心全意为病人服务。
+科室人才梯队合理，主任医师3名，副主任医师5名，主治医师5名，住院医师4名。副主任护师2名、主管护师3名、护师3名、护士8名。科室多次选派业务骨干分别在国内知名医院进修、深造。技术力量雄厚、业务知识全面。</string>
+    <string name="apptime_watch">注意,就诊时间只是系统预估,可能根据时间情况调整,
+        请按照现场排号系统提示为准</string>
 </resources>

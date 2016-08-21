@@ -5,6 +5,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import slidingmenu.dreamfly.org.slidingmenu.R;
 
@@ -30,13 +33,15 @@ public class DetailsActivity extends FragmentActivity {
     private void init(){
          this.initViews();
          this.initDatas();
-
+         this.initEvent();
     }
 
 
     private void initViews(){
+
         this.mSimpleViewPagerIndicator=(SimpleViewPagerIndicator)this.findViewById(R.id.mydefindicator_detailactivity_viewpagerindicator);
-        this.mViewPager=(ViewPager)this.findViewById(R.id.viewpager_detail2_viewdetials);
+        this.mViewPager=(ViewPager)this.findViewById(R.id.viewpager_defscrollview);
+
     }
 
     private void initEvent(){
@@ -56,6 +61,8 @@ public class DetailsActivity extends FragmentActivity {
 
             }
         });
+
+
     }
 
     private void initDatas(){
