@@ -10,7 +10,7 @@
 
 ####  2. 如何实现滑动:
      * 基本的滑动:View.scrollTo/scrollBy 函数实现（但是这种函数只能实现瞬时的滑动）
-     * 实现滑动的过渡：Scroller类来实现滑动的过渡
-
-
-
+     * 实现滑动的过渡：Scroller类来实现滑动的过渡:主要的实现的方法在computeScroll()方法中，
+     使用scroller实现动画的基本原理就是：不断在computeScroll()函数中调用scroller类computeScrollOffset()
+     判断是否完成当前滑动，如果未完成，就调用scrollto来进行滑动，然后invalidate()刷新视图(invalidate函数又会
+     	重新调用computeScroll()，这样不断循环来实现调用。
